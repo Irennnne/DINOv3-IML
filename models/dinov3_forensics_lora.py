@@ -46,7 +46,7 @@ class DINOv3ForensicsLoRA(nn.Module):
             dinov3_model_type: One of dinov3_vits16, dinov3_vitb16, dinov3_vitl16.
             image_size: Input image size (must be divisible by 16).
             edge_lambda: Weight for edge-aware loss term.
-            lora_rank: LoRA rank r. Best results: r=32 for ViT-L (9.0M trainable params).
+            lora_rank: LoRA rank r. Best results: r=32 for ViT-L (9.1M trainable params).
             lora_alpha: LoRA scaling factor alpha (typically 2*rank).
         """
         super().__init__()
