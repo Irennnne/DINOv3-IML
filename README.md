@@ -3,7 +3,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/)
 
-> **TL;DR** — Freeze DINOv3, inject LoRA on QKV, attach a 3-conv head. With only **9.1 M trainable parameters**, this simple recipe outperforms all prior specialized detectors on both the CAT-Net and MVSS-Net evaluation protocols.
+> **TL;DR** — Freeze DINOv3, inject LoRA on QKV, attach a 3-conv head. With only **9.0 M trainable parameters**, this simple recipe outperforms all prior specialized detectors on both the CAT-Net and MVSS-Net evaluation protocols.
 
 <p align="center">
   <img src="assets/teaser_input.jpg" width="200" alt="Tampered input"/>
@@ -17,7 +17,7 @@
 ## Highlights
 
 - **State-of-the-art** avg pixel-F1 on CAT-Net protocol: **0.847** (vs. 0.677 prior SOTA)
-- Only **9.1 M trainable parameters** — LoRA on QKV + 3-conv head
+- Only **9.0 M trainable parameters** — LoRA on QKV + 3-conv head
 - **Frozen backbone** — no catastrophic forgetting, no collapse on small datasets
 - **Simple architecture** — no specialized forensic components, no frequency analysis, no attention manipulation
 
@@ -46,7 +46,7 @@ The backbone (DINOv3 ViT, frozen) extracts patch-level features via `get_interme
 | MVSS-Net | 150.5 M | — | — | — | — | 0.536 |
 | **Ours ViT-S LoRA r=32** | 1.4 M | 0.787 | 0.923 | 0.462 | 0.646 | **0.704** |
 | **Ours ViT-B LoRA r=64** | 5.7 M | 0.840 | 0.938 | 0.565 | 0.715 | **0.780** |
-| **Ours ViT-L LoRA r=32** | 9.1 M | 0.907 | 0.941 | 0.636 | 0.905 | **0.847** |
+| **Ours ViT-L LoRA r=32** | 9.0 M | 0.907 | 0.941 | 0.636 | 0.905 | **0.847** |
 | **Ours ViT-L LoRA r=64** | 12.2 M | 0.908 | 0.927 | 0.633 | 0.882 | **0.837** |
 
 ### MVSS-Net Protocol (5-dataset avg pixel-F1)
@@ -73,10 +73,10 @@ The backbone (DINOv3 ViT, frozen) extracts patch-level features via `get_interme
 
 | Config | Protocol | Avg F1 | Trainable params | Download |
 |---|---|---|---|---|
-| ViT-L LoRA r=32 | CAT | **0.847** | 9.1 M | [Google Drive](https://drive.google.com/drive/folders/1X9EZUnvg7FLBvGgR_V7mViZUhiD5r7YT) |
+| ViT-L LoRA r=32 | CAT | **0.847** | 9.0 M | [Google Drive](https://drive.google.com/drive/folders/1X9EZUnvg7FLBvGgR_V7mViZUhiD5r7YT) |
 | ViT-L LoRA r=64 | CAT | 0.837 | 12.2 M | [Google Drive](https://drive.google.com/drive/folders/1X9EZUnvg7FLBvGgR_V7mViZUhiD5r7YT) |
 | ViT-L LoRA r=64 | MVSS | **0.774** | 12.2 M | [Google Drive](https://drive.google.com/drive/folders/1X9EZUnvg7FLBvGgR_V7mViZUhiD5r7YT) |
-| ViT-L LoRA r=32 | MVSS | 0.770 | 9.1 M | [Google Drive](https://drive.google.com/drive/folders/1X9EZUnvg7FLBvGgR_V7mViZUhiD5r7YT) |
+| ViT-L LoRA r=32 | MVSS | 0.770 | 9.0 M | [Google Drive](https://drive.google.com/drive/folders/1X9EZUnvg7FLBvGgR_V7mViZUhiD5r7YT) |
 | ViT-B LoRA r=64 | CAT | 0.780 | 5.7 M | [Google Drive](https://drive.google.com/drive/folders/1X9EZUnvg7FLBvGgR_V7mViZUhiD5r7YT) |
 | ViT-S LoRA r=32 | CAT | 0.704 | 1.4 M | [Google Drive](https://drive.google.com/drive/folders/1X9EZUnvg7FLBvGgR_V7mViZUhiD5r7YT) |
 
