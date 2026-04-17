@@ -1,4 +1,4 @@
-# Forensics Without Forensic Design: DINOv3 as a Strong Baseline for Image Manipulation Localization
+# DINOv3 Beats Specialized Detectors: A Simple Foundation Model Baseline for Image Forensics
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/)
@@ -184,7 +184,7 @@ model = DINOv3ForensicsLoRA.from_pretrained(
 
 ```bibtex
 @article{dinov3iml2026,
-  title   = {Forensics Without Forensic Design: DINOv3 as a Strong Baseline for Image Manipulation Localization},
+  title   = {DINOv3 Beats Specialized Detectors: A Simple Foundation Model Baseline for Image Forensics},
   author  = {[Authors]},
   journal = {[Venue]},
   year    = {2026},
