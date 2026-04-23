@@ -1,5 +1,6 @@
 # DINOv3 Beats Specialized Detectors: A Simple Foundation Model Baseline for Image Forensics
 
+[![](https://img.shields.io/github/stars/Irennnne/DINOv3-IML/?style=social)](https://github.com/Irennnne/DINOv3-IML/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/)
 [![arXiv](https://img.shields.io/badge/arXiv-2604.16083-b31b1b.svg)](https://arxiv.org/abs/2604.16083)
