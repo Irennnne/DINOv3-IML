@@ -221,11 +221,11 @@ model = DINOv3ForensicsLoRA.from_pretrained(
 ## Citation
 
 ```bibtex
-@article{yu2025dinov3iml,
+@article{yu2026dinov3iml,
   title   = {DINOv3 Beats Specialized Detectors: A Simple Foundation Model Baseline for Image Forensics},
-  author  = {Yu, Jieming and Wang, Zhuohan and Ma, Xiaochen},
-  journal = {arXiv preprint},
-  year    = {2025},
+  author  = {Yu, Jieming and Feng, Qiuxiao and Wang, Zhuohan and Ma, Xiaochen},
+  journal = {arXiv preprint arXiv:2604.16083},
+  year    = {2026},
 }
 ```
 
