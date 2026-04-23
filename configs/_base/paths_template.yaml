@@ -1,0 +1,14 @@
+# Edit these paths for your local setup.
+# Protocol selection lives here rather than in the filename.
+#
+# CAT protocol:
+# data_path: /path/to/balanced_dataset_cat.json
+# test_data_path: /path/to/test_datasets_cat.json
+#
+# MVSS protocol:
+# data_path: /path/to/casia2_tampered.json
+# test_data_path: /path/to/test_datasets_mvss.json
+
+data_path: /path/to/your_train_dataset.json
+test_data_path: /path/to/your_test_datasets.json
+dinov3_repo_path: /path/to/dinov3

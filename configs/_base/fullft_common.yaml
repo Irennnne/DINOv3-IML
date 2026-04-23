@@ -1,0 +1,14 @@
+# Shared full fine-tuning defaults across model-centric configs.
+model: DINOv3ForensicsFullFT
+image_size: 512
+edge_lambda: 20.0
+lr: 3.0e-4
+weight_decay: 0.05
+epochs: 100
+warmup_epochs: 5
+accum_iter: 10
+num_workers: 8
+if_resizing: true
+edge_mask_width: 7
+test_period: 4
+test_batch_size: 64

@@ -2,7 +2,7 @@
 # DINOv3-IML training launcher
 #
 # Usage:
-#   bash scripts/train.sh configs/cat_lora_vitl_r32.yaml
+#   bash scripts/train.sh configs/lora_vitl_r32.yaml
 #
 # Requirements:
 #   pip install imdlbenco peft torch
@@ -14,15 +14,20 @@
 #
 set -euo pipefail
 
-CONFIG="${1:-configs/cat_lora_vitl_r32.yaml}"
+CONFIG="${1:-configs/lora_vitl_r32.yaml}"
+CONFIG_TOOL="scripts/resolve_config.py"
 
 if [ ! -f "$CONFIG" ]; then
     echo "Error: config file not found: $CONFIG"
     exit 1
 fi
 
-# Parse key fields from YAML (requires python3)
-MODEL=$(python3 -c "import yaml; d=yaml.safe_load(open('$CONFIG')); print(d['model'])")
+if [ ! -f "$CONFIG_TOOL" ]; then
+    echo "Error: config resolver not found: $CONFIG_TOOL"
+    exit 1
+fi
+
+MODEL=$(python3 "$CONFIG_TOOL" "$CONFIG" --field model)
 OUTPUT_DIR="output/$(basename ${CONFIG%.yaml})"
 MASTER_PORT="${MASTER_PORT:-29500}"
 NPROC="${NPROC:-1}"
@@ -41,24 +46,12 @@ torchrun \
     --nproc_per_node="$NPROC" \
     --master_port="$MASTER_PORT" \
     train.py \
-    $(python3 -c "
-import shlex
-import yaml
-d = yaml.safe_load(open('$CONFIG'))
-skip = {'model', 'data_path', 'test_data_path', 'dinov3_repo_path', 'dinov3_weights_path'}
-for k, v in d.items():
-    if k not in skip:
-        if isinstance(v, bool):
-            if v:
-                print(f'--{k}', end=' ')
-        else:
-            print(f'--{k} {shlex.quote(str(v))}', end=' ')
-") \
+    $(python3 "$CONFIG_TOOL" "$CONFIG" --cli-args) \
     --model "$MODEL" \
-    --data_path "$(python3 -c "import yaml; print(yaml.safe_load(open('$CONFIG'))['data_path'])")" \
-    --test_data_path "$(python3 -c "import yaml; print(yaml.safe_load(open('$CONFIG'))['test_data_path'])")" \
-    --dinov3_repo_path "$(python3 -c "import yaml; print(yaml.safe_load(open('$CONFIG'))['dinov3_repo_path'])")" \
-    --dinov3_weights_path "$(python3 -c "import yaml; print(yaml.safe_load(open('$CONFIG'))['dinov3_weights_path'])")" \
+    --data_path "$(python3 "$CONFIG_TOOL" "$CONFIG" --field data_path)" \
+    --test_data_path "$(python3 "$CONFIG_TOOL" "$CONFIG" --field test_data_path)" \
+    --dinov3_repo_path "$(python3 "$CONFIG_TOOL" "$CONFIG" --field dinov3_repo_path)" \
+    --dinov3_weights_path "$(python3 "$CONFIG_TOOL" "$CONFIG" --field dinov3_weights_path)" \
     --output_dir "$OUTPUT_DIR" \
     --find_unused_parameters \
     2>&1 | tee "$OUTPUT_DIR/train.log"

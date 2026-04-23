@@ -1,0 +1,12 @@
+# ViT-L/16 LoRA r=32.
+# Edit data_path / test_data_path below for CAT or MVSS.
+base_configs:
+  - _base/paths_template.yaml
+  - _base/lora_common.yaml
+
+dinov3_model_type: dinov3_vitl16
+lora_rank: 32
+lora_alpha: 64
+batch_size: 24
+test_batch_size: 64
+dinov3_weights_path: /path/to/dinov3_vitl16_pretrain_lvd1689m-8aa4cbdd.pth

@@ -152,20 +152,35 @@ Follow [IMDLBenCo dataset preparation](https://github.com/scu-zjz/IMDLBenCo) to 
 ### 3. Edit config
 
 ```bash
-# Set data_path, test_data_path, dinov3_repo_path, dinov3_weights_path
-vim configs/cat_lora_vitl_r32.yaml
+# Pick a model config, then set:
+#   - data_path / test_data_path   (CAT or MVSS)
+#   - dinov3_repo_path
+#   - dinov3_weights_path
+vim configs/lora_vitl_r32.yaml
 ```
 
-Training hyperparameters (shared across all configs): AdamW optimizer, lr = 3e-4, cosine annealing schedule, 5 warmup epochs, 100 total epochs, effective batch size = 240 (via gradient accumulation), images resized to 512x512.
+Configs are model-centric rather than protocol-specific. To switch between CAT and MVSS, edit only `data_path` and `test_data_path` in the YAML:
+
+```yaml
+# CAT
+data_path: /path/to/balanced_dataset_cat.json
+test_data_path: /path/to/test_datasets_cat.json
+
+# MVSS
+data_path: /path/to/casia2_tampered.json
+test_data_path: /path/to/test_datasets_mvss.json
+```
+
+Training hyperparameters are shared through `_base/*.yaml`: AdamW optimizer, lr = 3e-4, cosine schedule, 5 warmup epochs, 100 total epochs, effective batch size via `accum_iter=10`, and 512x512 inputs.
 
 ### 4. Launch training
 
 ```bash
 # Single GPU
-bash scripts/train.sh configs/cat_lora_vitl_r32.yaml
+bash scripts/train.sh configs/lora_vitl_r32.yaml
 
 # Multi-GPU (e.g., 4 GPUs)
-NPROC=4 bash scripts/train.sh configs/cat_lora_vitl_r32.yaml
+NPROC=4 bash scripts/train.sh configs/lora_vitl_r32.yaml
 ```
 
 Checkpoints and logs are saved to `output/<config_name>/`.
