@@ -1,6 +1,6 @@
 # DINOv3 Beats Specialized Detectors: A Simple Foundation Model Baseline for Image Forensics
 
-[![](https://img.shields.io/github/stars/Irennnne/DINOv3-IML/?style=social)](https://github.com/Irennnne/DINOv3-IML/)
+[![](https://img.shields.io/github/stars/Irennnne/DINOv3-IML)](https://github.com/Irennnne/DINOv3-IML/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/)
 [![arXiv](https://img.shields.io/badge/arXiv-2604.16083-b31b1b.svg)](https://arxiv.org/abs/2604.16083)
@@ -213,7 +213,9 @@ model = DINOv3ForensicsLoRA.from_pretrained(
 ---
 
 ## Citation
+We hope **DINOv3-IML** can serve as a simple baseline for image forensics research, helping reduce the effort of reproducing baseline experiments and providing a starting point for building stronger models.
 
+If you find this repo useful, please consider citing our paper and giving us a ⭐. We sincerely appreciate your support.
 ```bibtex
 @misc{yu2026dinov3beatsspecializeddetectors,
   title={DINOv3 Beats Specialized Detectors: A Simple Foundation Model Baseline for Image Forensics},
